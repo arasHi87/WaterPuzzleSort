@@ -9,11 +9,12 @@ def label_color(src):
     
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     open_img = cv2.morphologyEx(gray_img, cv2.MORPH_OPEN, kernel, iterations=3)
-    erosion_img = cv2.erode(open_img, np.ones((5, 5), np.uint8), iterations=1)
+    erosion_img = cv2.erode(open_img, np.ones((20, 20), np.uint8), iterations=1)
     
     ret, binary = cv2.threshold(erosion_img, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_TRIANGLE) 
     contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    
+    cv2.drawContours(img, contours, -1, (0, 0, 255), 3)
+
     bounding_boxes = [cv2.boundingRect(cnt) for cnt in contours]
     temp = list()
     
@@ -63,8 +64,8 @@ def format_color(tubes):
                 idx+=1
             ele[0]=cnvt[ele[0]]
 
-    #  for key, val in cnvt.items():
-    #      print("{}, {}".format(key, val))
+    for key, val in cnvt.items():
+        print("{}, {}".format(key, val))
 
     return tubes
 
@@ -73,7 +74,7 @@ if __name__ == "__main__":
     tubes = merge_color(tubes)
     tubes = format_color(tubes)
 
-    #  pprint(tubes)
+    pprint(tubes)
 
     for tube in tubes:
         for block in tube:
