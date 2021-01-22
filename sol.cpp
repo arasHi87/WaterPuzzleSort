@@ -129,12 +129,12 @@ int main() {
             tubes[idx].push(to_string(n));
     } idx+=2, dfs(tubes);
     
-    while (!ans.empty()) {
-        int x=ans.top().first, y=ans.top().second; ans.pop();
+    while (!ans.empty()) { 
+		int x=ans.top().first, y=ans.top().second; ans.pop();
         
         if (!ans.empty()) {
             if (x==ans.top().second && y==ans.top().first) ans.pop();
-            else cout << ans.top().first << ' ' << ans.top().second << '\n';
-        }
+            else cout << x << ' ' << y << '\n';
+        } else cout << x << ' ' << y << '\n';
     }
 }
