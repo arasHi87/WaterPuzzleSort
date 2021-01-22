@@ -64,8 +64,8 @@ def format_color(tubes):
                 idx+=1
             ele[0]=cnvt[ele[0]]
 
-    for key, val in cnvt.items():
-        print("{}, {}".format(key, val))
+    #  for key, val in cnvt.items():
+    #      print("{}, {}".format(key, val))
 
     return tubes
 
@@ -76,6 +76,6 @@ if __name__ == "__main__":
 
     pprint(tubes)
 
-    for tube in tubes:
-        for block in tube:
-            print("{} {}".format(block[0], block[1]))
+    #  for tube in tubes:
+    #      for block in tube:
+    #          print("{} {}".format(block[0], block[1]))
