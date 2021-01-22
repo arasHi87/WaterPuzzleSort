@@ -121,7 +121,9 @@ int main() {
     } idx+=2, dfs(tubes);
     
     while (!ans.empty()) {
-        cout << ans.top().first << ' ' << ans.top().second << '\n';
-        ans.pop();
+        int x=ans.top().first, y=ans.top().second; ans.pop();
+
+        if (x==ans.top().second && y==ans.top().first) ans.pop();
+        else cout << ans.top().first << ' ' << ans.top().second << '\n';
     }
 }
