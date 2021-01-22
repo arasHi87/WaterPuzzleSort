@@ -16,6 +16,15 @@ struct tube {
     tube(): len(0) { for (int i=0;i<4;i++) block[i]=""; };
 
     int last() { return 4-len; }
+
+    int same() {
+        int cnt=1;
+
+        for (int i=len;i>=2;i--)
+            if (block[len]==block[len-1])
+                cnt++;
+        return cnt;
+    }
     
     string pop() {  return block[len--]; }
 
@@ -95,7 +104,7 @@ bool dfs(tube tmp[]) {
                 if (i!=j) {
                     int cnt=0;
 
-                    if ((tmp[j].empty()) || (tmp[j].last() && tmp[i].top()==tmp[j].top())) {
+                    if ((tmp[j].empty()) || (tmp[j].last() && tmp[i].top()==tmp[j].top() && tmp[i].same()<=tmp[j].last())) {
                         while (!tmp[i].empty() && (tmp[j].empty() || (tmp[i].top()==tmp[j].top() && tmp[j].last())))
                             cnt++, tmp[j].push(tmp[i].pop());
                         
@@ -122,8 +131,10 @@ int main() {
     
     while (!ans.empty()) {
         int x=ans.top().first, y=ans.top().second; ans.pop();
-
-        if (x==ans.top().second && y==ans.top().first) ans.pop();
-        else cout << ans.top().first << ' ' << ans.top().second << '\n';
+        
+        if (!ans.empty()) {
+            if (x==ans.top().second && y==ans.top().first) ans.pop();
+            else cout << ans.top().first << ' ' << ans.top().second << '\n';
+        }
     }
 }
