@@ -41,7 +41,10 @@ def label_color(src):
 def merge_color(tubes):
     for stk in tubes:
         if stk:
-            for idx in range(0, 4):
+            for idx in range(1, 4):
+                if idx >= len(stk):
+                    break
+
                 if stk[idx] == stk[idx-1]:
                     stk[idx-1][1]+=1
                     del stk[idx]
@@ -66,7 +69,7 @@ def format_color(tubes):
     return tubes
 
 if __name__ == "__main__":
-    tubes = label_color('img.jpg')
+    tubes = label_color('imgs/U3f38b6f273c8b7dbad03a7b0aa45c837.jpg')
     tubes = merge_color(tubes)
     tubes = format_color(tubes)
 
